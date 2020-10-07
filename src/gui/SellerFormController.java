@@ -84,8 +84,6 @@ public class SellerFormController implements Initializable {
 
 	private ObservableList<Department> obsList;
 
-	private Object object;
-
 	public void setSeller(Seller entity) {
 		this.entity = entity;
 	}
@@ -146,16 +144,15 @@ public class SellerFormController implements Initializable {
 
 		if (dpBirthDate.getValue() == null) {
 			exception.addErrors("birthDate", "field can't be empty");
-		} else {
+		} 
+		else {
 			Instant instant = Instant.from(dpBirthDate.getValue().atStartOfDay(ZoneId.systemDefault()));
 			obj.setBirthDate(Date.from(instant));
 		}
-
 		if (txtBaseSalary.getText() == null || txtBaseSalary.getText().trim().equals("")) {
 			exception.addErrors("baseSalary", "field can't be empty");
 		}
 		obj.setBaseSalary(Utils.tryParseToDouble(txtBaseSalary.getText()));
-		
 		obj.setDepartment(comboBoxDepartment.getValue());
 		
 		if (exception.getErrors().size() > 0) {
